@@ -125,7 +125,7 @@ trim() {
 # Extract value from string (Format: NAME = VALUE)
 get_val() {
 	local line="${1}"
-	echo "${line##*=*[[:space:]]}"
+	echo "${line##*=}"
 }
 
 # Read region
@@ -146,7 +146,7 @@ if [ -f "${CONFIG}" ]; then
 		fi
 	done < "${CONFIG}"
 fi
-
+ 
 # Read credentials
 section=
 while read -r line; do
@@ -158,7 +158,7 @@ while read -r line; do
 	# Extract available aws export values
 	if [ "${section}" = "${PROFILE}" ]; then
 		if [[ "${line}" =~ ^[[:space:]]*aws_access_key_id[[:space:]]*=.*$ ]]; then
-			aws_access_key_id="$( get_val "${line}" )"
+      aws_access_key_id="$( get_val "${line}" )"
 		fi
 		if [[ "${line}" =~ ^[[:space:]]*aws_secret_access_key[[:space:]]*=.*$ ]]; then
 			aws_secret_access_key="$( get_val "${line}" )"
