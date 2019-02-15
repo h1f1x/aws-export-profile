@@ -27,7 +27,7 @@ if [ "${#}" -gt "0" ]; then
 
 		-v|--version)
 			cat << EOF
-aws-export-profile v0.4
+aws-export-profile v0.4-h1f1x-1
 EOF
 			exit 0
 			;;
@@ -87,8 +87,9 @@ EOF
 	esac
 fi
 
+DEFAULT_PROFILE="${AWS_DEFAULT_PROFILE:-default}"
 # Input parameter
-PROFILE="${1:-$AWS_DEFAULT_PROFILE}"
+PROFILE="${1:-$DEFAULT_PROFILE}"
 CREDENTIALS="${2:-${HOME}/.aws/credentials}"
 CONFIG="${3:-${HOME}/.aws/config}"
 
